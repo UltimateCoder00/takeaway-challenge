@@ -15,4 +15,10 @@ describe Menu do
       expect(menu.price).to eq price
     end
   end
+
+  describe 'Print menu' do
+    it '#print' do
+      expect(menu.print).to eq menu.list
+    end
+  end
 end
