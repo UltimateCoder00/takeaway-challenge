@@ -18,7 +18,7 @@ describe Menu do
 
   describe 'Print menu' do
     it '#print' do
-      expect(menu.print).to eq menu.list
+      expect(menu.load).to eq menu.list
     end
   end
 end
