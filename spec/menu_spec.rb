@@ -1,23 +1,13 @@
 require 'menu'
 
 describe Menu do
-  subject(:menu) {described_class.new(food, price)}
+  subject(:menu) {described_class.new}
 
   let(:food) {:food}
   let(:price) {:food_price}
 
-  describe 'Check Menu' do
-    it '#food' do
-      expect(menu.food).to eq food
-    end
-
-    it '#price' do
-      expect(menu.price).to eq price
-    end
-  end
-
   describe 'Print menu' do
-    it '#load_list' do
+    it '#list' do
       expect(menu.list).to eq menu.list
     end
   end
@@ -32,6 +22,10 @@ describe Menu do
     it '#remove' do
       menu.add(food, price)
       expect(menu.remove(food)).to eq "#{price}"
+    end
+
+    it 'Removing item that does not exist in the list' do
+      expect(menu.remove(food)).to eq nil
     end
   end
 end
