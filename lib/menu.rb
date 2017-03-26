@@ -6,13 +6,15 @@ class Menu
   def initialize(food, price)
     @food = food
     @price = price
-    @list
+    @list = CSV.new(File.new(Dir.pwd + '/lib/menu_list.csv')).to_h
   end
 
-  def load_list
-    file_path = Dir.pwd + '/lib/menu_list.csv'
-
-    file = File.new(file_path)
-    @list = CSV.read(file)
+  def add(food,price)
+    @list["#{food}"] = "#{price}"
   end
+
+  def remove(food)
+    @list.delete("#{food}")
+  end
+
 end
