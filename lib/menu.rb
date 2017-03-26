@@ -1,11 +1,10 @@
 require 'csv'
 
 class Menu
-  attr_reader :food, :price, :list
 
-  def initialize(food, price)
-    @food = food
-    @price = price
+  attr_reader :list
+
+  def initialize
     @list = CSV.new(File.new(Dir.pwd + '/lib/menu_list.csv')).to_h
   end
 
