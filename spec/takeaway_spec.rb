@@ -4,7 +4,7 @@ describe Takeaway do
   subject(:takeaway) {described_class.new}
 
   let(:sms) { double(:sms, send: message) }
-  let(:message) { "Your order will be with you soon" }
+  let(:message) { "Thank you! Your order was placed and will be delivered before #{Time.new + 3600}" }
 
   let(:food) {"Cod"}
   let(:food2) {"Haddock"}

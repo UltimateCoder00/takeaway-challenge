@@ -1,6 +1,9 @@
 require_relative 'menu'
 require_relative 'sms'
 
+require 'envyable'
+Envyable.load('config/env.yml')
+
 class Takeaway
 
   attr_reader :menu, :sms, :basket
@@ -74,7 +77,8 @@ class Takeaway
   def confirmation
     while true
       puts "Is this order correct? (Y/N)"
-      reply = gets.chomp
+      # reply = gets.chomp
+      reply = 'Y'
 
       if reply.upcase == 'Y'
         puts "Thank your for ordering with us, you will shortly receive a confirmation text message"
@@ -92,7 +96,7 @@ class Takeaway
 
   def send_sms
     message = "Thank you! Your order was placed and will be delivered before #{Time.new + 3600}"
-    # sms.send(message)
+    sms.send(message)
   end
 
 end
