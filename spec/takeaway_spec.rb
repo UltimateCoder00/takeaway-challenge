@@ -11,15 +11,47 @@ describe Takeaway do
   let(:food3) {"Calamari"}
   let(:food4) {"Cod"}
 
-  it '#order' do
-    expect(takeaway.order(food)).to eq nil
+  let(:food5) {"Pizza"}
+
+  it '#show_menu' do
+    expect(takeaway.show_menu).to eq takeaway.menu
   end
 
-  it '#checkout' do
-    takeaway.order(food)
-    takeaway.order(food2)
-    takeaway.order(food3)
-    takeaway.order(food4)
-    expect(takeaway.checkout).to eq nil
+  describe '#show_basket' do
+    it 'Display empty basket' do
+      expect{takeaway.show_basket}.to raise_error "Your Basket is empty"
+    end
+
+    describe '#order' do
+      it 'Display loaded basket' do
+        takeaway.order(food, 1)
+        takeaway.order(food2, 2)
+        takeaway.order(food3, 1)
+        takeaway.order(food4, 3)
+        expect(takeaway.show_basket).to eq takeaway.basket
+      end
+
+      it 'order food not in menu' do
+        expect{takeaway.order(food5, 1)}.to raise_error "Sorry '#{food5}' is not in our menu"
+      end
+    end
+  end
+
+  describe '#checkout' do
+    it 'Confirm the basket total is correct' do
+      takeaway.order(food, 1)
+      takeaway.order(food2, 2)
+      takeaway.order(food3, 1)
+      takeaway.order(food4, 3)
+      expect(takeaway.checkout).to eq nil
+    end
+
+    it 'The basket total is incorrect' do
+      takeaway.order(food, 1)
+      takeaway.order(food2, 2)
+      takeaway.order(food3, 1)
+      takeaway.order(food4, 3)
+      expect(takeaway.checkout).to eq nil
+    end
   end
 end
